@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import UdaDataBox from './UdaDataBox';
-import registerServiceWorker from './registerServiceWorker';
+import UdaDataBox from './components/UdaDataBox';
 
 ReactDOM.render(<UdaDataBox />, document.getElementById('root'));
-registerServiceWorker();
