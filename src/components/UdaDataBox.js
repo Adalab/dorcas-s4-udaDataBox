@@ -3,6 +3,7 @@ import Data from './Data.js';
 import request from 'axios';
 import { getToken } from '../services/auth.js'
 import { getActive } from '../services/active.js'
+import { getPeriod } from '../services/currentPeriod.js';
 
 class UdaDataBox extends Component {
   constructor(props) {
@@ -30,65 +31,34 @@ class UdaDataBox extends Component {
           portfolioId: portfolioID
         }, () => console.log('token', this.state.token));
       })
+      .then(getActive('ac7f1614-4d2e-48e7-90a1-1e33e32346ac')
+        .then(res => {
+          const stdDev = (res.data.forecast.ML1.std_dev) / 100;
+          this.setState({
+            stdDev: stdDev,
+            udaValue: res.data.forecast.best_value,
+            method: res.data.forecast.best_method,
+          }, () => console.log('Estado tras segunda llamada', this.state))
+        })
+      )
 
-    getActive('ac7f1614-4d2e-48e7-90a1-1e33e32346ac')
+    // getActive('ac7f1614-4d2e-48e7-90a1-1e33e32346ac')
+    //   .then(res => {
+    //     const stdDev = (res.data.forecast.ML1.std_dev) / 100;
+    //     this.setState({
+    //       stdDev: stdDev,
+    //       udaValue: res.data.forecast.best_value,
+    //       method: res.data.forecast.best_method,
+    //     }, () => console.log('Estado tras segunda llamada', this.state))
+    //   })
+
+    getPeriod()
       .then(res => {
-        const stdDev = (res.data.forecast.ML1.std_dev) / 100;
-        this.setState({
-          stdDev: stdDev,
-          udaValue: res.data.forecast.best_value,
-          method: res.data.forecast.best_method,
-        }, () => console.log('Estado tras segunda llamada', this.state))
+        this.setState({ currentPeriod: res.data.period.code }, () => console.log('Working'))
       })
   }
 
-  // getActive() {
-  //   const reports = {
-  //     url: `https://reds.urbandataanalytics.com/assets/api/v1.0/portfolio/426/asset`,
-  //     data: { 'operation': '1', 'lat': 36.2794, 'lon': -6.08818, 'area': 120, 'simulated': true },
-  //     headers: { 'Content-type': 'application/json', 'Authorization': 'Token ac7f1614-4d2e-48e7-90a1-1e33e32346ac' }
-  //   }
 
-  //   return new Promise((resolve, reject) => {
-  //     request.post(reports.url, reports.data, { headers: reports.headers })
-  //       .then(res => {
-  //         resolve(res)
-  //         const stdDev = (res.data.forecast.ML1.std_dev) / 100;
-  //         const udaValue = res.data.forecast.best_value;
-  //         const bestMethod = res.data.forecast.best_method;
-  //         this.setState({
-  //           stdDev: stdDev,
-  //           udaValue: udaValue,
-  //           method: bestMethod,
-  //         }, () => console.log('Estado tras segunda llamada', this.state))
-  //       })
-  //       .catch(e => {
-  //         //resolve(e.response.data.error)
-  //         resolve(e.response)
-  //       })
-  //   })
-  // }
-
-  getPeriod() {
-    const reports = {
-      url: 'https://reds.urbandataanalytics.com/reds/api/v1.0/period',
-      headers: { 'Content-type': 'application/json', 'Authorization': 'Token ac7f1614-4d2e-48e7-90a1-1e33e32346ac' }
-    }
-
-    return new Promise((resolve, reject) => {
-      request.get(reports.url, { headers: reports.headers })
-        .then(res => {
-          resolve(res)
-          console.log('llamada 3', res)
-          const currentPeriod = res.data.period.code
-          this.setState({ currentPeriod: currentPeriod })
-        })
-        .catch(e => {
-          //resolve(e.response.data.error)
-          resolve(e.response)
-        })
-    })
-  }
 
   getIndicator() {
     const reports = {

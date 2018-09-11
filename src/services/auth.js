@@ -1,14 +1,14 @@
 import request from 'axios';
 
 export function getToken(user, pwd) {
-    const reportsGetToken = {
+    const reports = {
         url: 'https://reds.urbandataanalytics.com/management/api/v1.0/login',
         data: { 'username': user, 'password': pwd },
         headers: { 'Content-Type': 'application/json' }
     };
 
     return new Promise((resolve, reject) => {
-        request.post(reportsGetToken.url, reportsGetToken.data, { headers: reportsGetToken.headers })
+        request.post(reports.url, reports.data, { headers: reports.headers })
             .then(res => {
                 resolve(res)
             })
