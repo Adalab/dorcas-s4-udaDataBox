@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Data from './Data.js';
-import { getToken } from '../services/auth.js'
-import { getActive, getPeriod, getIndicator } from '../services/active.js'
-import { DataBox, TextStyle, TextStyleBold } from '../stylesheets/StylesDataBox.js';
+import Data from '../Data';
+import { getToken } from '../../services/auth.js'
+import { getActive, getPeriod, getIndicator } from '../../services/active.js'
+import { DataBox, TextStyle} from './UdaDataBoxStyles.js';
 
 class UdaDataBox extends Component {
   constructor(props) {
@@ -22,7 +22,6 @@ class UdaDataBox extends Component {
       }
     }
   }
-
 
 
   componentDidMount() {
