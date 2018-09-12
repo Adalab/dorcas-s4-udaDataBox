@@ -1,4 +1,3 @@
-
 const WrapperListStyle = {
   minWidth:'430px',
   maxWidth:'700px',
@@ -15,13 +14,15 @@ const ListStyle = {
 const LiStyleIzd = {
   display: 'grid',
   gridTemplateColumns: '1fr auto auto',
-  gridGap: '10px'
+  gridGap: '10px',
+  lineHeight: '1.4'
 }
 
 const LiStyleDer = {
   display: 'grid',
   gridTemplateColumns: '1fr 1fr',
-  gridGap: '20px'
+  gridGap: '20px',
+  lineHeight: '1.4'
 }
 
 const TextStyle = {
@@ -39,4 +40,4 @@ const Border = {
 }
 
 
-export { ListStyle, TextStyle, WrapperListStyle, TextStyleBold, LiStyleIzd, LiStyleDer, Border};
+export {ListStyle, TextStyle, WrapperListStyle, TextStyleBold, LiStyleIzd, LiStyleDer, Border};
