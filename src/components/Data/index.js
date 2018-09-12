@@ -5,7 +5,7 @@ import { ListStyle,
          WrapperListStyle,
          LiStyleIzd,
          LiStyleDer,
-         Border } from '../stylesheets/StylesDataBox.js';
+         Border } from './DataStyles.js';
 
 class Data extends Component {
   render() {
