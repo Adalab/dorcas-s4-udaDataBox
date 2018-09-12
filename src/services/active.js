@@ -1,8 +1,8 @@
 import request from 'axios';
 
-export function getActive(token) {
+export function getActive(token, portfolioId) {
     const reports = {
-        url: `https://reds.urbandataanalytics.com/assets/api/v1.0/portfolio/426/asset`,
+        url: `https://reds.urbandataanalytics.com/assets/api/v1.0/portfolio/${portfolioId}/asset`,
         data: { 'operation': '1', 'lat': 36.2794, 'lon': -6.08818, 'area': 120, 'simulated': true },
         headers: { 'Content-type': 'application/json', 'Authorization': `Token ${token}` }
     }
