@@ -95,10 +95,11 @@ class UdaDataBox extends Component {
     const {
       stdDev, udaValue, method, udaNBH, udaCity, tendendy,
     } = this.state;
+    const background = this.props.background;
     return (
       <div style={{
         ...DataBox,
-        backgroundColor: this.props.background
+        backgroundColor: background
       }}
       >
         <Data

@@ -1,7 +1,6 @@
 import './fonts/fonts.css';
 
 const DataBox = {
-    backgroundColor: '#B7BCC6',
     padding: '15px',
     margin:'auto',
     minWidth:'430px',
@@ -26,7 +25,6 @@ const ListStyle = {
   margin: '0',
   padding:'0',
 }
-
 
 const LiStyleIzd = {
   display: 'grid',
