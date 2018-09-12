@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Data from './Data.js';
 import { getToken } from '../services/auth.js'
-import { getActive, getPeriod, getIndicator } from '../services/active.js'
+import { getActive, getPeriod } from '../services/active.js'
 import { DataBox, TextStyle, TextStyleBold } from '../stylesheets/StylesDataBox.js';
 
 class UdaDataBox extends Component {
@@ -57,8 +57,7 @@ class UdaDataBox extends Component {
         })
 
       getPeriod(this.state.token)
-        .then(res =>
-          getIndicator(this.state.token, res.data.period.code)
+       
             .then(res => {
               const udaNBH = res.data[`2018Q1`][`72400001000110001400000000000000000000`][`1`].o_pm[0]
               const udaCity = res.data[`2018Q1`][`72400001000110001400002000010000000000`][`1`].o_pm[0]
@@ -75,7 +74,7 @@ class UdaDataBox extends Component {
               })
             }
             )
-        )
+        
 
     } else {
       console.log('Loading...')
