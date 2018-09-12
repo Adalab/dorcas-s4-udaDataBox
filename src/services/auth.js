@@ -11,7 +11,6 @@ export function getToken(user, pwd) {
         request.post(reports.url, reports.data, { headers: reports.headers })
             .then(res => {
                 resolve(res)
-                console.log('auth',res)
             })
             .catch(e => {
                 //resolve(e.response.data.error)

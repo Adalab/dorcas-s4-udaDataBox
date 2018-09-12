@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import Data from './Data.js';
 import request from 'axios';
 import { getToken } from '../services/auth.js'
-import { getActive } from '../services/active.js'
-import { getPeriod } from '../services/currentPeriod.js';
+import { getActive, getPeriod, getIndicator } from '../services/active.js'
 
 class UdaDataBox extends Component {
   constructor(props) {
@@ -12,13 +11,15 @@ class UdaDataBox extends Component {
     this.state = {
       token: null,
       portfolioId: null,
-      stdDev: null,
-      udaValue: null,
-      method: '',
-      currentPeriod: '',
-      udaNBH: null,
-      udaCity: null,
-      tendendy: '',
+
+      data: {
+        stdDev: null,
+        udaValue: null,
+        method: '',
+        udaNBH: null,
+        udaCity: null,
+        tendendy: '',
+      }
     }
   }
 
@@ -29,7 +30,7 @@ class UdaDataBox extends Component {
         this.setState({
           token: res.data.authToken,
           portfolioId: portfolioID
-        }, () => console.log('token', this.state.token));
+        });
       })
   }
 
@@ -43,69 +44,60 @@ class UdaDataBox extends Component {
         .then(res => {
           const stdDev = (res.data.forecast.ML1.std_dev) / 100;
           this.setState({
-            stdDev: stdDev,
-            udaValue: res.data.forecast.best_value,
-            method: res.data.forecast.best_method,
-          }, () => console.log('Estado tras segunda llamada', this.state))
+            data:
+            {
+              ...this.state.data,
+              stdDev: stdDev,
+              udaValue: res.data.forecast.best_value,
+              method: res.data.forecast.best_method,
+            }
+          })
         })
+
+      getPeriod(this.state.token)
+        .then(res =>
+          getIndicator(this.state.token, res.data.period.code)
+            .then(res => {
+              const udaNBH = res.data[`2018Q1`][`72400001000110001400000000000000000000`][`1`].o_pm[0]
+              const udaCity = res.data[`2018Q1`][`72400001000110001400002000010000000000`][`1`].o_pm[0]
+              const tendendy = res.data[`2018Q1`][`72400001000110001400002000010000000000`][`1`].o_pu_qq[0]
+
+              this.setState({
+                data:
+                {
+                  ...this.state.data,
+                  udaNBH: udaNBH,
+                  udaCity: udaCity,
+                  tendendy: tendendy,
+                }
+              })
+            }
+            )
+        )
+
+    } else {
+      console.log('Loading...')
     }
   }
 
+  render() {
+    const {
+      stdDev, udaValue, method, udaNBH, udaCity, tendendy,
+    } = this.state.data;
+    return (
+      <div className="App" >
+        <Data
+          stdDev={stdDev}
+          udaValue={udaValue}
+          method={method}
+          udaNBH={udaNBH}
+          udaCity={udaCity}
+          tendendy={tendendy}
+        />
 
-  // getPeriod() 
-  //     .then(res => {
-  //   this.setState({ currentPeriod: res.data.period.code }, () => console.log('Working'))
-  //     })
-  // }
-
-
-
-getIndicator() {
-  const reports = {
-    url: 'https://reds.urbandataanalytics.com/urban/api/v1.0/indicators?keys=o_pm,o_pu_qq&operations=1&geo_json={%22type%22:%22FeatureCollection%22,%22features%22:[{%22type%22:%22Feature%22,%22geometry%22:{%22type%22:%22Point%22,%22coordinates%22:[-6.08818,36.2794]},%22properties%22:{%22admin_levels%22:[3,5]}}]}&period_codes=2018Q1',
-    headers: { 'Content-type': 'application/json', 'Authorization': 'Token ac7f1614-4d2e-48e7-90a1-1e33e32346ac' }
+      </div>
+    );
   }
-
-  return new Promise((resolve, reject) => {
-    request.get(reports.url, { headers: reports.headers })
-      .then(res => {
-        resolve(res)
-        console.log('llamada 4', res)
-        const udaNBH = res.data[`2018Q1`][`72400001000110001400000000000000000000`][`1`].o_pm[0]
-        const udaCity = res.data[`2018Q1`][`72400001000110001400002000010000000000`][`1`].o_pm[0]
-        const tendendy = res.data[`2018Q1`][`72400001000110001400002000010000000000`][`1`].o_pu_qq[0]
-
-        this.setState({
-          udaNBH: udaNBH,
-          udaCity: udaCity,
-          tendendy: tendendy,
-        })
-      })
-      .catch(e => {
-        //resolve(e.response.data.error)
-        resolve(e.response)
-      })
-  })
-}
-
-render() {
-  const {
-    stdDev, udaValue, method, udaNBH, udaCity, tendendy,
-  } = this.state;
-  return (
-    <div className="App" >
-      <Data
-        stdDev={stdDev}
-        udaValue={udaValue}
-        method={method}
-        udaNBH={udaNBH}
-        udaCity={udaCity}
-        tendendy={tendendy}
-      />
-
-    </div>
-  );
-}
 }
 
 export default UdaDataBox;
