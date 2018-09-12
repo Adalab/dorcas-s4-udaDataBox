@@ -4,7 +4,7 @@ import request from 'axios';
 import { getToken } from '../services/auth.js'
 import { getActive } from '../services/active.js'
 import { getPeriod } from '../services/currentPeriod.js';
-import { DataBox } from '../stylesheets/StylesDataBox.js';
+import { DataBox, TextStyle, TextStyleBold } from '../stylesheets/StylesDataBox.js';
 
 class UdaDataBox extends Component {
   constructor(props) {
@@ -103,7 +103,7 @@ class UdaDataBox extends Component {
           udaCity={udaCity}
           tendendy={tendendy}
         />
-        <span>Data shown for {'operation'} </span>
+        <span style={TextStyleBold}>Data shown for {'operation'} </span>
       </div>
     );
   }

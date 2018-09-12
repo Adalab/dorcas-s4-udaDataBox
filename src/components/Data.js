@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ListStyle, TextStyle, WrapperListStyle } from '../stylesheets/StylesDataBox.js';
+import { ListStyle, TextStyle, TextStyleBold, WrapperListStyle } from '../stylesheets/StylesDataBox.js';
 
 class Data extends Component {
   render() {
@@ -29,14 +29,26 @@ class Data extends Component {
     return (
       <div style={WrapperListStyle}>
       <ul style={ListStyle}>
-        <li><span style={TextStyle}>uDA Value: </span>{udaValue}</li>
-        <li>uDA NBH: {udaNBH}</li>
-        <li>uDA City: {udaCity}</li>
+        <li>
+          <span style={TextStyleBold}>uDA Value: </span>
+          <span style={TextStyle}>{udaValue}</span>
+          <span style={TextStyleBold}>  €</span>
+        </li>
+        <li>
+          <span style={TextStyleBold}>uDA NBH: </span>
+          <span style={TextStyle}>{udaNBH}</span>
+          <span style={TextStyleBold}>  €</span>
+        </li>
+        <li>
+          <span style={TextStyleBold}>uDA City: </span>
+          {udaCity}
+          <span style={TextStyleBold}>  €</span>
+        </li>
       </ul>
       <ul style={ListStyle}>
-        <li>Accuracy: {accuracy}</li>
-        <li>Method: {method}</li>
-        <li>Trend: {trend}</li>
+        <li><span style={TextStyleBold}>Accuracy: </span>{accuracy}</li>
+        <li><span style={TextStyleBold}>Method: </span>{method}</li>
+        <li><span style={TextStyleBold}>Trend: </span>{trend}</li>
       </ul>
       </div>
     );

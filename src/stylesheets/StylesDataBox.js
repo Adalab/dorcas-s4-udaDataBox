@@ -1,6 +1,7 @@
+import './fonts/fonts.css';
 
 const DataBox = {
-    backgroundColor: '#CBCBCB',
+    backgroundColor: '#B7BCC6',
     minWidth:'430px',
     maxWidth:'700px',
     minHeight:'90px',
@@ -8,12 +9,10 @@ const DataBox = {
     display: 'flex',
     flexDirection:'column',
     alignItems: 'center',
-
 }
 
 const WrapperListStyle = {
   display: 'flex'
-
 }
 
 const ListStyle = {
@@ -21,13 +20,16 @@ const ListStyle = {
 }
 
 const TextStyle = {
-  fontWeight: 'bold',
-  textSize: '50px'
+  fontFamily: 'Gotham-Light',
+  textSize: '50px',
+}
+const TextStyleBold = {
+  fontFamily: 'Gotham-Bold',
+  textSize: '50px',
 }
 
 
 
 
 
-
-export {DataBox, ListStyle, TextStyle, WrapperListStyle};
+export {DataBox, ListStyle, TextStyle, WrapperListStyle, TextStyleBold};
