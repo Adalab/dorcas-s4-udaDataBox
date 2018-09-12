@@ -1,4 +1,3 @@
-
 const WrapperListStyle = {
   minWidth:'430px',
   maxWidth:'700px',
@@ -39,4 +38,4 @@ const Border = {
 }
 
 
-export { ListStyle, TextStyle, WrapperListStyle, TextStyleBold, LiStyleIzd, LiStyleDer, Border};
+export {ListStyle, TextStyle, WrapperListStyle, TextStyleBold, LiStyleIzd, LiStyleDer, Border};
