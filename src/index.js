@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import UdaDataBox from './components/UdaDataBox';
 
 const data = {
-    backgroundColor: '',
+    backgroundColor: '#B7BCC6',
     operation: '', // rent or sale
 }
 
