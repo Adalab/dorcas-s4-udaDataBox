@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Coordenadas extends Component {
+class Coordinates extends Component {
   render() {
     return (
       <div className="Coordinates">

@@ -1,9 +1,22 @@
 
 const DataBox = {
-    display: 'flex',
-    border: '1px' 'solid' 'black',
-    min-width:'430px',
-    max-width:'700px',
-    min-height:'90px',
-    max-height:'140px'
+    backgroundColor: '#CBCBCB',
+    minWidth:'430px',
+    maxWidth:'700px',
+    minHeight:'90px',
+    maxHeight:'140px'
 }
+
+const ListStyle = {
+  listStyle: 'none',
+  display: 'grid',
+  gridTemplateColums: '1fr 1fr',
+  gridTemplateRows: '1fr 1fr 1fr 1fr'
+
+
+}
+
+
+
+
+export {DataBox, ListStyle};
