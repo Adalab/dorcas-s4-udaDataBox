@@ -23,6 +23,8 @@ class UdaDataBox extends Component {
     }
   }
 
+
+
   componentDidMount() {
     getToken('adalab', '4286')
       .then(res => {
@@ -94,7 +96,11 @@ class UdaDataBox extends Component {
       stdDev, udaValue, method, udaNBH, udaCity, tendendy,
     } = this.state;
     return (
-      <div style= { DataBox } >
+      <div style={{
+        ...DataBox,
+        backgroundColor: this.props.background
+      }}
+      >
         <Data
           stdDev={stdDev}
           udaValue={udaValue}
@@ -103,8 +109,10 @@ class UdaDataBox extends Component {
           udaCity={udaCity}
           tendendy={tendendy}
         />
-        <span style={TextStyleBold}>Data shown for {'operation'} </span>
-      </div>
+        <span style={TextStyleBold}>
+          Data shown for {'operation'}
+        </span>
+      </ div>
     );
   }
 }

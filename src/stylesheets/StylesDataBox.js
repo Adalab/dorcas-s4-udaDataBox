@@ -1,14 +1,14 @@
 import './fonts/fonts.css';
 
 const DataBox = {
-    backgroundColor: '#B7BCC6',
-    minWidth:'430px',
-    maxWidth:'700px',
-    minHeight:'90px',
-    maxHeight:'140px',
-    display: 'flex',
-    flexDirection:'column',
-    alignItems: 'center',
+  backgroundColor: '#B7BCC6',
+  minWidth: '430px',
+  maxWidth: '700px',
+  minHeight: '90px',
+  maxHeight: '140px',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
 }
 
 const WrapperListStyle = {
@@ -32,4 +32,4 @@ const TextStyleBold = {
 
 
 
-export {DataBox, ListStyle, TextStyle, WrapperListStyle, TextStyleBold};
+export { DataBox, ListStyle, TextStyle, WrapperListStyle, TextStyleBold };
