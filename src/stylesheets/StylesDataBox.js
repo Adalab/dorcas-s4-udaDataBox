@@ -4,19 +4,30 @@ const DataBox = {
     minWidth:'430px',
     maxWidth:'700px',
     minHeight:'90px',
-    maxHeight:'140px'
+    maxHeight:'140px',
+    display: 'flex',
+    flexDirection:'column',
+    alignItems: 'center',
+
+}
+
+const WrapperListStyle = {
+  display: 'flex'
+
 }
 
 const ListStyle = {
   listStyle: 'none',
-  display: 'grid',
-  gridTemplateColums: '1fr 1fr',
-  gridTemplateRows: '1fr 1fr 1fr 1fr'
+}
 
-
+const TextStyle = {
+  fontWeight: 'bold',
+  textSize: '50px'
 }
 
 
 
 
-export {DataBox, ListStyle};
+
+
+export {DataBox, ListStyle, TextStyle, WrapperListStyle};

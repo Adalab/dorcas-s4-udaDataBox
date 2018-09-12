@@ -4,6 +4,7 @@ import request from 'axios';
 import { getToken } from '../services/auth.js'
 import { getActive } from '../services/active.js'
 import { getPeriod } from '../services/currentPeriod.js';
+import { DataBox } from '../stylesheets/StylesDataBox.js';
 
 class UdaDataBox extends Component {
   constructor(props) {
@@ -93,7 +94,7 @@ class UdaDataBox extends Component {
       stdDev, udaValue, method, udaNBH, udaCity, tendendy,
     } = this.state;
     return (
-      <div className="App" >
+      <div style= { DataBox } >
         <Data
           stdDev={stdDev}
           udaValue={udaValue}
@@ -102,7 +103,7 @@ class UdaDataBox extends Component {
           udaCity={udaCity}
           tendendy={tendendy}
         />
-
+        <span>Data shown for {'operation'} </span>
       </div>
     );
   }
