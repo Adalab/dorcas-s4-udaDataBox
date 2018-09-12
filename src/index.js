@@ -2,9 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import UdaDataBox from './components/UdaDataBox';
 
-const data = {
-    backgroundColor: '#B7BCC6',
-    operation: '', // rent or sale
-}
+const backgroundColor = '#B7BCC6'
 
-ReactDOM.render(<UdaDataBox config={data}/>, document.getElementById('root'));
+ReactDOM.render(<UdaDataBox background={backgroundColor}/>, document.getElementById('root'));

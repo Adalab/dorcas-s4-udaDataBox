@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Data from './Data.js';
-import request from 'axios';
 import { getToken } from '../services/auth.js'
 import { getActive, getPeriod, getIndicator } from '../services/active.js'
+import { DataBox, TextStyle, TextStyleBold } from '../stylesheets/StylesDataBox.js';
 
 class UdaDataBox extends Component {
   constructor(props) {
@@ -22,6 +22,8 @@ class UdaDataBox extends Component {
       }
     }
   }
+
+
 
   componentDidMount() {
     getToken('adalab', '4286')
@@ -84,8 +86,13 @@ class UdaDataBox extends Component {
     const {
       stdDev, udaValue, method, udaNBH, udaCity, tendendy,
     } = this.state.data;
+    const background = this.props.background;
     return (
-      <div className="App" >
+      <div style={{
+        ...DataBox,
+        backgroundColor: background
+      }}
+      >
         <Data
           stdDev={stdDev}
           udaValue={udaValue}
@@ -94,7 +101,7 @@ class UdaDataBox extends Component {
           udaCity={udaCity}
           tendendy={tendendy}
         />
-
+        <span style={TextStyle}>Data shown for {'operation'} </span>
       </div>
     );
   }
