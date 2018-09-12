@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { ListStyle, TextStyle, TextStyleBold, WrapperListStyle } from '../stylesheets/StylesDataBox.js';
+import { ListStyle,
+         TextStyle,
+         TextStyleBold,
+         WrapperListStyle,
+         LiStyleIzd,
+         LiStyleDer,
+         Border } from '../stylesheets/StylesDataBox.js';
 
 class Data extends Component {
   render() {
@@ -29,26 +35,36 @@ class Data extends Component {
     return (
       <div style={WrapperListStyle}>
       <ul style={ListStyle}>
-        <li>
+        <li style={LiStyleIzd}>
           <span style={TextStyleBold}>uDA Value: </span>
-          <span style={TextStyle}>{udaValue}</span>
+          <span style={TextStyle}>   {udaValue}</span>
           <span style={TextStyleBold}>  €</span>
         </li>
-        <li>
+        <li style={LiStyleIzd}>
           <span style={TextStyleBold}>uDA NBH: </span>
           <span style={TextStyle}>{udaNBH}</span>
           <span style={TextStyleBold}>  €</span>
         </li>
-        <li>
+        <li style={LiStyleIzd}>
           <span style={TextStyleBold}>uDA City: </span>
-          {udaCity}
+          <span style={TextStyle}>{udaCity}</span>
           <span style={TextStyleBold}>  €</span>
         </li>
       </ul>
+      <hr style={Border}/>
       <ul style={ListStyle}>
-        <li><span style={TextStyleBold}>Accuracy: </span>{accuracy}</li>
-        <li><span style={TextStyleBold}>Method: </span>{method}</li>
-        <li><span style={TextStyleBold}>Trend: </span>{trend}</li>
+        <li style={LiStyleDer}>
+          <span style={TextStyleBold}>Accuracy: </span>
+          <span style={TextStyle}>{accuracy}</span>
+        </li>
+        <li style={LiStyleDer}>
+          <span style={TextStyleBold}>Method: </span>
+          <span style={TextStyle}>{method}</span>
+        </li>
+        <li style={LiStyleDer}>
+          <span style={TextStyleBold}>Trend: </span>
+          <span style={TextStyle}>   {trend}</span>
+        </li>
       </ul>
       </div>
     );

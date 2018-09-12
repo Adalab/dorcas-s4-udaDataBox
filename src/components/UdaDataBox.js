@@ -103,7 +103,7 @@ class UdaDataBox extends Component {
           udaCity={udaCity}
           tendendy={tendendy}
         />
-        <span style={TextStyleBold}>Data shown for {'operation'} </span>
+        <span style={TextStyle}>Data shown for {'operation'} </span>
       </div>
     );
   }
