@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Data from '../Data';
 import { getToken } from '../../services/auth.js'
-import { getActive, getPeriod, getIndicator } from '../../services/active.js'
+import { getActive, getPeriod } from '../../services/active.js'
 import { DataBox, TextStyle } from './UdaDataBoxStyles.js';
 
 class UdaDataBox extends Component {
