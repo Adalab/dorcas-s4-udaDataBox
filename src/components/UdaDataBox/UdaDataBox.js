@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Data from '../Data';
 import { getToken } from '../../services/auth.js'
-import { getActive, getPeriod, getIndicator } from '../../services/active.js'
-import { DataBox, TextStyle} from './UdaDataBoxStyles.js';
+import { getActive, getPeriod } from '../../services/active.js'
+import { DataBox, TextStyle } from './UdaDataBoxStyles.js';
 
 class UdaDataBox extends Component {
   constructor(props) {
@@ -56,26 +56,21 @@ class UdaDataBox extends Component {
         })
 
       getPeriod(this.state.token)
-        .then(res =>
-          getIndicator(this.state.token, res.data.period.code)
-            .then(res => {
-              const udaNBH = res.data[`2018Q1`][`72400001000110001400000000000000000000`][`1`].o_pm[0]
-              const udaCity = res.data[`2018Q1`][`72400001000110001400002000010000000000`][`1`].o_pm[0]
-              const tendendy = res.data[`2018Q1`][`72400001000110001400002000010000000000`][`1`].o_pu_qq[0]
+        .then(res => {
+          const udaNBH = res.data[`2018Q1`][`72400001000110001400000000000000000000`][`1`].o_pm[0]
+          const udaCity = res.data[`2018Q1`][`72400001000110001400002000010000000000`][`1`].o_pm[0]
+          const tendendy = res.data[`2018Q1`][`72400001000110001400002000010000000000`][`1`].o_pu_qq[0]
 
-              this.setState({
-                data:
-                {
-                  ...this.state.data,
-                  udaNBH: udaNBH,
-                  udaCity: udaCity,
-                  tendendy: tendendy,
-                }
-              })
+          this.setState({
+            data:
+            {
+              ...this.state.data,
+              udaNBH: udaNBH,
+              udaCity: udaCity,
+              tendendy: tendendy,
             }
-            )
-        )
-
+          })
+        })
     } else {
       console.log('Loading...')
     }
