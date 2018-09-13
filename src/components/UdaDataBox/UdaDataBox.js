@@ -41,7 +41,7 @@ class UdaDataBox extends Component {
       && this.state.token !== prevState.token
       && this.state.portfolioId !== ''
       && this.state.portfolioId !== prevState.portfolioId) {
-      getActive(this.state.token, this.state.portfolioId)
+      getActive(this.state.token, this.state.portfolioId, this.props.data)
         .then(res => {
           const stdDev = (res.data.forecast.ML1.std_dev) / 100;
           this.setState({
