@@ -15,5 +15,11 @@ const TextStyle = {
   fontFamily: 'Gotham-Light, sans serif'
 }
 
+const Operation = {
+  fontFamily: 'Gotham-Bold, sans serif',
+  color: 'red',
+  marginLeft: '10px'
+}
 
-export {DataBox, TextStyle};
+
+export {DataBox, TextStyle, Operation};
