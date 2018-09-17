@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Data from '../Data';
 import { getToken } from '../../services/auth.js'
 import { getActive, getPeriod } from '../../services/active.js'
-import { DataBox, TextStyle } from './UdaDataBoxStyles.js';
+import { DataBox, TextStyle, Operation } from './UdaDataBoxStyles.js';
 
 class UdaDataBox extends Component {
   constructor(props) {
@@ -76,11 +76,23 @@ class UdaDataBox extends Component {
     }
   }
 
+
+
   render() {
     const {
       stdDev, udaValue, method, udaNBH, udaCity, tendendy,
     } = this.state.data;
     const background = this.props.background;
+
+    let operation;
+    if(this.props.data.operation === 0) {
+      operation = 'Rent'
+    } else if (this.props.data.operation === 1) {
+      operation = 'Sale'
+    } else {
+      return null;
+    }
+
     return (
       <div style={{
         ...DataBox,
@@ -95,7 +107,12 @@ class UdaDataBox extends Component {
           udaCity={udaCity}
           tendendy={tendendy}
         />
-        <span style={TextStyle}>Data shown for {'operation'} </span>
+        <span style={TextStyle}>
+          Data shown for
+          <span style={Operation}>
+            {operation}
+          </span>
+        </span>
       </div>
     );
   }
