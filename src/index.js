@@ -31,4 +31,4 @@ const dataSearch = {
   status: 5
 }
 
-ReactDOM.render(<UdaDataBox background={backgroundColor} data={dataSearch}/>, document.getElementById('root'));
+ReactDOM.render(<UdaDataBox background={backgroundColor} data={dataSearch} />, document.getElementById('root'));
