@@ -18,11 +18,10 @@ class UdaDataBox extends Component {
         method: '',
         udaNBH: null,
         udaCity: null,
-        tendendy: '',
+        tendendy: null,
       }
     }
   }
-
 
   componentDidMount() {
     getToken('adalab', '4286')
@@ -60,7 +59,6 @@ class UdaDataBox extends Component {
           const udaNBH = res.data[`2018Q1`][`72400001000110001400000000000000000000`][`1`].o_pm[0]
           const udaCity = res.data[`2018Q1`][`72400001000110001400002000010000000000`][`1`].o_pm[0]
           const tendendy = res.data[`2018Q1`][`72400001000110001400002000010000000000`][`1`].o_pu_qq[0]
-
           this.setState({
             data:
             {
@@ -72,23 +70,27 @@ class UdaDataBox extends Component {
           })
         })
     } else {
-      console.log('Loading...')
+      return null
     }
   }
 
-
-
   render() {
     const {
-      stdDev, udaValue, method, udaNBH, udaCity, tendendy,
+      stdDev,
+      udaValue,
+      method,
+      udaNBH,
+      udaCity,
+      tendendy,
     } = this.state.data;
+    const { operation } = this.props.data;
     const background = this.props.background;
 
-    let operation;
-    if(this.props.data.operation === 0) {
-      operation = 'Rent'
-    } else if (this.props.data.operation === 1) {
-      operation = 'Sale'
+    let operationText;
+    if (operation === 0) {
+      operationText = 'Rent'
+    } else if (operation === 1) {
+      operationText = 'Sale'
     } else {
       return null;
     }
@@ -110,7 +112,7 @@ class UdaDataBox extends Component {
         <span style={TextStyle}>
           Data shown for
           <span style={Operation}>
-            {operation}
+            {operationText}
           </span>
         </span>
       </div>

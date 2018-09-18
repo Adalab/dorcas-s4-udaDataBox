@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import { ListStyle,
-         TextStyle,
-         TextStyleBold,
-         WrapperListStyle,
-         LiStyleIzd,
-         LiStyleDer,
-         Border } from './DataStyles.js';
+import { ListStyle, TextStyle, TextStyleBold, WrapperListStyle, LiStyleIzd, LiStyleDer, Border } from './DataStyles.js';
+import PropTypes from 'prop-types';
 
 class Data extends Component {
   render() {
     const {
-      stdDev, udaValue, method, udaNBH, udaCity, tendendy,
+      stdDev,
+      udaValue,
+      method,
+      udaNBH,
+      udaCity,
+      tendendy,
     } = this.props;
 
     let accuracy;
@@ -34,41 +34,50 @@ class Data extends Component {
 
     return (
       <div style={WrapperListStyle}>
-      <ul style={ListStyle}>
-        <li style={LiStyleIzd}>
-          <span style={TextStyleBold}>uDA Value: </span>
-          <span style={TextStyle}>   {udaValue}</span>
-          <span style={TextStyleBold}>  €</span>
-        </li>
-        <li style={LiStyleIzd}>
-          <span style={TextStyleBold}>uDA NBH: </span>
-          <span style={TextStyle}>{udaNBH}</span>
-          <span style={TextStyleBold}>  €</span>
-        </li>
-        <li style={LiStyleIzd}>
-          <span style={TextStyleBold}>uDA City: </span>
-          <span style={TextStyle}>{udaCity}</span>
-          <span style={TextStyleBold}>  €</span>
-        </li>
-      </ul>
-      <hr style={Border}/>
-      <ul style={ListStyle}>
-        <li style={LiStyleDer}>
-          <span style={TextStyleBold}>Accuracy: </span>
-          <span style={TextStyle}>{accuracy}</span>
-        </li>
-        <li style={LiStyleDer}>
-          <span style={TextStyleBold}>Method: </span>
-          <span style={TextStyle}>{method}</span>
-        </li>
-        <li style={LiStyleDer}>
-          <span style={TextStyleBold}>Trend: </span>
-          <span style={TextStyle}>   {trend}</span>
-        </li>
-      </ul>
+        <ul style={ListStyle}>
+          <li style={LiStyleIzd}>
+            <span style={TextStyleBold}>uDA Value:</span>
+            <span style={TextStyle}>{udaValue}</span>
+            <span style={TextStyleBold}>€</span>
+          </li>
+          <li style={LiStyleIzd}>
+            <span style={TextStyleBold}>uDA NBH:</span>
+            <span style={TextStyle}>{udaNBH}</span>
+            <span style={TextStyleBold}>€</span>
+          </li>
+          <li style={LiStyleIzd}>
+            <span style={TextStyleBold}>uDA City: </span>
+            <span style={TextStyle}>{udaCity}</span>
+            <span style={TextStyleBold}>€</span>
+          </li>
+        </ul>
+        <hr style={Border} />
+        <ul style={ListStyle}>
+          <li style={LiStyleDer}>
+            <span style={TextStyleBold}>Accuracy:</span>
+            <span style={TextStyle}>{accuracy}</span>
+          </li>
+          <li style={LiStyleDer}>
+            <span style={TextStyleBold}>Method:</span>
+            <span style={TextStyle}>{method}</span>
+          </li>
+          <li style={LiStyleDer}>
+            <span style={TextStyleBold}>Trend:</span>
+            <span style={TextStyle}>{trend}</span>
+          </li>
+        </ul>
       </div>
     );
   }
+}
+
+Data.propTypes = {
+  stdDev: PropTypes.number,
+  udaValue: PropTypes.number,
+  method: PropTypes.string,
+  udaNBH: PropTypes.number,
+  udaCity: PropTypes.number,
+  tendendy: PropTypes.number,
 }
 
 export default Data;
