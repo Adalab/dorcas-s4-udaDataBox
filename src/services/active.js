@@ -42,8 +42,9 @@ export function getPeriod(token) {
     return new Promise((resolve, reject) => {
         request.get(reports.url, { headers: reports.headers })
             .then(resp => {
+                console.log(resp)
                 getIndicator(token, resp.data.period.code)
-                    .then(res => resolve(res))
+                    .then(res => resolve(res.data[resp.data.period.code]))
             })
             .catch(e => {
                 //resolve(e.response.data.error)
