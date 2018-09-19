@@ -53,8 +53,6 @@ The props you can configurate are the following ones:
 Axios for API calls (http://pre.urbandataanalytics.com/reds/api)
 # How to use it
 
-**nada porque no hay npm todavía**
-
 # Interesting Data
 
 - To make the flow of calls to the api you need: *authorization* through **token** and a **portfolioId**.
