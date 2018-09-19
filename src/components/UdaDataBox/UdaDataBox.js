@@ -3,6 +3,7 @@ import Data from '../Data';
 import { getToken } from '../../services/auth.js'
 import { getActive, getPeriod } from '../../services/active.js'
 import { DataBox, TextStyle, Operation } from './UdaDataBoxStyles.js';
+import PropTypes from 'prop-types';
 
 class UdaDataBox extends Component {
   constructor(props) {
@@ -56,9 +57,10 @@ class UdaDataBox extends Component {
 
       getPeriod(this.state.token)
         .then(res => {
-          const udaNBH = res.data[`2018Q1`][`72400001000110001400000000000000000000`][`1`].o_pm[0]
-          const udaCity = res.data[`2018Q1`][`72400001000110001400002000010000000000`][`1`].o_pm[0]
-          const tendendy = res.data[`2018Q1`][`72400001000110001400002000010000000000`][`1`].o_pu_qq[0]
+          const udaNBH = res['72400001000110001400000000000000000000']['1'].o_pm[0]
+          console.log('udaNBH', udaNBH)
+          const udaCity = res['72400001000110001400002000010000000000']['1'].o_pm[0]
+          const tendendy = res[`72400001000110001400002000010000000000`][`1`].o_pu_qq[0]
           this.setState({
             data:
             {
@@ -121,8 +123,8 @@ class UdaDataBox extends Component {
 }
 
 UdaDataBox.propTypes = {
-  background: propTypes.string,
-  data: propTypes.object,
+  background: PropTypes.string,
+  data: PropTypes.object,
 }
 
 export default UdaDataBox;
