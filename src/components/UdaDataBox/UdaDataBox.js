@@ -120,4 +120,9 @@ class UdaDataBox extends Component {
   }
 }
 
+UdaDataBox.propTypes = {
+  background: propTypes.string,
+  data: propTypes.object,
+}
+
 export default UdaDataBox;
