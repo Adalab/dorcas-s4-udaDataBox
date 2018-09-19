@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Data from '../Data';
 import { getToken } from '../../services/auth.js'
 import { getActive, getPeriod } from '../../services/active.js'
-import { DataBox, TextStyle } from './UdaDataBoxStyles.js';
+import { DataBox, TextStyle, Operation } from './UdaDataBoxStyles.js';
 
 class UdaDataBox extends Component {
   constructor(props) {
@@ -18,11 +18,10 @@ class UdaDataBox extends Component {
         method: '',
         udaNBH: null,
         udaCity: null,
-        tendendy: '',
+        tendendy: null,
       }
     }
   }
-
 
   componentDidMount() {
     getToken('adalab', '4286')
@@ -41,7 +40,7 @@ class UdaDataBox extends Component {
       && this.state.token !== prevState.token
       && this.state.portfolioId !== ''
       && this.state.portfolioId !== prevState.portfolioId) {
-      getActive(this.state.token, this.state.portfolioId)
+      getActive(this.state.token, this.state.portfolioId, this.props.data)
         .then(res => {
           const stdDev = (res.data.forecast.ML1.std_dev) / 100;
           this.setState({
@@ -60,7 +59,6 @@ class UdaDataBox extends Component {
           const udaNBH = res.data[`2018Q1`][`72400001000110001400000000000000000000`][`1`].o_pm[0]
           const udaCity = res.data[`2018Q1`][`72400001000110001400002000010000000000`][`1`].o_pm[0]
           const tendendy = res.data[`2018Q1`][`72400001000110001400002000010000000000`][`1`].o_pu_qq[0]
-
           this.setState({
             data:
             {
@@ -72,15 +70,31 @@ class UdaDataBox extends Component {
           })
         })
     } else {
-      console.log('Loading...')
+      return null
     }
   }
 
   render() {
     const {
-      stdDev, udaValue, method, udaNBH, udaCity, tendendy,
+      stdDev,
+      udaValue,
+      method,
+      udaNBH,
+      udaCity,
+      tendendy,
     } = this.state.data;
+    const { operation } = this.props.data;
     const background = this.props.background;
+
+    let operationText;
+    if (operation === 0) {
+      operationText = 'Rent'
+    } else if (operation === 1) {
+      operationText = 'Sale'
+    } else {
+      return null;
+    }
+
     return (
       <div style={{
         ...DataBox,
@@ -95,10 +109,20 @@ class UdaDataBox extends Component {
           udaCity={udaCity}
           tendendy={tendendy}
         />
-        <span style={TextStyle}>Data shown for {'operation'} </span>
+        <span style={TextStyle}>
+          Data shown for
+          <span style={Operation}>
+            {operationText}
+          </span>
+        </span>
       </div>
     );
   }
+}
+
+UdaDataBox.propTypes = {
+  background: propTypes.string,
+  data: propTypes.object,
 }
 
 export default UdaDataBox;
