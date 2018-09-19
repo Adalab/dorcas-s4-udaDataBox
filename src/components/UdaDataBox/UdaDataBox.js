@@ -3,6 +3,7 @@ import Data from '../Data';
 import { getToken } from '../../services/auth.js'
 import { getActive, getPeriod } from '../../services/active.js'
 import { DataBox, TextStyle, Operation } from './UdaDataBoxStyles.js';
+import PropTypes from 'prop-types';
 
 class UdaDataBox extends Component {
   constructor(props) {
