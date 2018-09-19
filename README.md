@@ -20,7 +20,7 @@ The props you can configurate are the following ones:
 | Prop | type | description |
 | ------ | ------ | ------ |
 | background-color | text | desired color of the component box or gray reflected in the default design, if not specified. |  
-| coordinates (lat/lon)| object | Object with coordinates lat and lng |
+| coordinates (lat/lon)| object (Required) | Object with coordinates lat and lng |
 | operation | number |it can be a 1 (for sale) or a 0 (for rent) |
 | area | number | to do |
 | property_type | number | to do |
