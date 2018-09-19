@@ -122,8 +122,8 @@ class UdaDataBox extends Component {
 }
 
 UdaDataBox.propTypes = {
-  background: propTypes.string,
-  data: propTypes.object,
+  background: PropTypes.string,
+  data: PropTypes.object,
 }
 
 export default UdaDataBox;
